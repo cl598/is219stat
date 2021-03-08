@@ -63,12 +63,51 @@ class statistics {
 
 /** Population Sampling Functions **/
 // Simple Random Sampling
+    static simpleRandomSample(data){
+        let sample = [];
+        let x = sample[Math.floor(Math.random() * sample.length)];
+
+        for(let i = 0; i < data.length+1; i++){
+            if(i === 0){
+
+            }if(i % x === 0){
+                sample.concat(x);
+            }
+        }
+        return sample;
+    }
 
 // Systematic Sampling
 
 // Confidence Interval for a Sample
+    static sampleCI(data){
+        let pos = 0;
+        let neg = 0;
+        let result = [];
+        let mean = this.mean(data);
+        let sdPop = this.standardDeviation(data);
+        let zscores = this.zscore(data);
+
+        for(let i = 0; i < zscores.length+1; i++){
+            pos = mean + i * sdPop/Math.sqrt(data.length);
+            neg = mean - i * sdPop/Math.sqrt(data.length);
+            result.concat([pos,neg]);
+        }
+        return result;
+    }
 
 // Margin of Error
+    static marginOfError(data){
+        let sdPop = this.standardDeviation(data);
+        let scores = this.zscore(data);
+        let result = [];
+
+        for(let i = 0; i < scores.length+1; i++){
+            let moeNum = i * sdPop / Math.sqrt(data.length);
+            result.concat(moeNum);
+        }
+        return result;
+    }
 
 // How to find a Confidence Interval function
     static confidenceInterval(data) {
@@ -80,6 +119,15 @@ class statistics {
     }
 
 // Cochran's Sample Size Formula
+    static cochSample(data){
+        let moe = this.marginOfError(data);
+        let scores = this.zscore(data);
+        let result = [];
+
+        for(let i = 0; i < data.length+1; i++){
+            result.concat(scores);
+        }
+    }
 
 // How to Find a Sample Size Given a Confidence Interval and Width
 // (unknown population standard deviation)
@@ -90,10 +138,20 @@ class statistics {
 /** Random Generator Function **/
 
 // Generate a random number without a seed between a range of two numbers - Both Integer and Decimal
+    static randNoSeed(){
+
+    }
 
 // Generate a random number with a seed between a range of two numbers - Both Integer and Decimal
+    static randSeed(){
+
+    }
 
 // Generate a list of N random numbers with a seed and between a range of numbers - Both Integer and Decimal
+    static randNSeed(){
+
+    }
+
 
 // Select a random item from a list
 
