@@ -1,0 +1,7 @@
+{
+  "name": "is219stat",
+  "version": "1.0.0",
+  "dependencies": {
+    "jstat": "^1.9.4"
+  }
+}
