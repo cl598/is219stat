@@ -12,3 +12,5 @@ References
 https://github.com/jstat/jstat
 
 https://jstat.github.io/all.html
+
+http://davidbau.com/encode/seedrandom.js

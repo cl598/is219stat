@@ -4,18 +4,15 @@ class calculator extends statistics{
 
     static randomNumber = statistics.randomNumber();
     static randomSelected = statistics.randomSelect();
-
     static randomSubset = [];
-    static data = [];
+}
+
+class calculations{
 
     static getResults(){
         return this.result;
     }
-
-    static setResults(){
-        this.result = "result";
-    }
 }
-
-document.writeln()
+document.writeln(calculations.getResults());
 module.exports = calculator;
+module.exports = calculations;

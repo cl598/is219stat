@@ -3,12 +3,12 @@ class statistics {
 /** Descriptive Statistics Functions **/
 // Random number
     static randomNumber(data) {
-        return data[Math.floor(Math.random() * data.length)];
+        return Math.random();
     }
 
 // Select a random value from the list
-    static randomSelect(min, data) {
-        return Math.random() * (data.length - min) + min;
+    static randomSelect(min, max) {
+        return Math.random() * (max - min) + min;
     }
 
 // Mean
@@ -19,7 +19,6 @@ class statistics {
 // Median
     static median(data) {
         return jStat.median(data);
-
     }
 
 // Mode
@@ -47,9 +46,10 @@ class statistics {
         return jStat.skewness(data);
     }
 
-// Sample Correlation
-
-// Population Correlation
+// Correlation
+    static correlation(data){
+        return jStat.corrcoeff()
+    }
 
 // Z-Score
     static zscore(value, mean, sd) {
@@ -76,8 +76,6 @@ class statistics {
         }
         return sample;
     }
-
-// Systematic Sampling
 
 // Confidence Interval for a Sample
     static sampleCI(data){
@@ -111,11 +109,11 @@ class statistics {
 
 // How to find a Confidence Interval function
     static confidenceInterval(data) {
-        let x = statistics.mean() + statistics.zscore() * (statistics.standardDeviation() / Math.sqrt(data.length))
-        let y = statistics.mean() - statistics.zscore() * (statistics.standardDeviation() / Math.sqrt(data.length))
+        let upper = statistics.mean() + statistics.zscore() * (statistics.standardDeviation() / Math.sqrt(data.length))
+        let lower = statistics.mean() - statistics.zscore() * (statistics.standardDeviation() / Math.sqrt(data.length))
 
-        document.writeln(y + " is the lower confidence interval and " +
-            x + " is the upper confidence interval");
+        document.writeln(lower + " is the lower confidence interval and " +
+            upper + " is the upper confidence interval");
     }
 
 // Cochran's Sample Size Formula
@@ -131,35 +129,58 @@ class statistics {
 
 // How to Find a Sample Size Given a Confidence Interval and Width
 // (unknown population standard deviation)
+    static unknownSD(data){
+        let upper = this.mean(data) + this.marginOfError(data);
+        let lower = this.mean(data) - this.marginOfError(data);
+
+        document.writeln(lower + " is the lower half and " + upper + " is the upper half." )
+    }
 
 // How to Find a Sample Size Given a Confidence Interval and Width
 // (known population standard deviation)
+    static knownSD(data){
+        let upper = this.mean(data) + this.marginOfError(data);
+        let lower = this.mean(data) - this.marginOfError(data);
+
+        document.writeln(lower + " is the lower half and " + upper + " is the upper half." )
+    }
 
 /** Random Generator Function **/
 
 // Generate a random number without a seed between a range of two numbers - Both Integer and Decimal
-    static randNoSeed(){
-
+    static randNoSeed(data){
+        return data[Math.floor(Math.random() * data.length)];
     }
 
 // Generate a random number with a seed between a range of two numbers - Both Integer and Decimal
-    static randSeed(){
-
+    static randSeed(data){
+        return Math.seedrandom(data);
     }
 
 // Generate a list of N random numbers with a seed and between a range of numbers - Both Integer and Decimal
-    static randNSeed(){
-
+    static randNSeed(data){
+        return data[Math.floor(Math.seedrandom(data) * data.length)];
     }
 
-
 // Select a random item from a list
+    static randItem(data){
+        return data[Math.floor(Math.random() * data.length)];
+    }
 
-// Set a seed and randomly.select the same value from a list
+// Set a seed and randomly select the same value from a list
+    static randSeedSelect(data){
+        return data[Math.floor(Math.seedrandom(data) * data.length)];
+    }
 
 // Select N number of items from a list without a seed
+    static randNoNSeed(data){
+        return data[Math.floor(Math.random() * data.length)];
+    }
 
 // Select N number of items from a list with a seed
+    static randN(data){
+        return data[Math.floor(Math.seedrandom() * data.length)];
+    }
 }
 
 module.exports = statistics;
